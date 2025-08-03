@@ -1,0 +1,535 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #000;
+  overflow-x: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: scroll-position;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Performance optimizations */
+* {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Spline 3D Animation Styling */
+spline-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Chrome Android Bust - Exact Match */
+.chrome-android-bust {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, 
+    #ffd700, #ffed4e, #ff9500, #ff6b35, 
+    #e63946, #f72585, #b5179e, #7209b7, 
+    #480ca8, #3a0ca3, #3f37c9, #4361ee);
+  background-size: 400% 400%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: chromeShift 6s ease-in-out infinite;
+  
+  /* Chrome reflection effect */
+  box-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.4),
+    0 0 60px rgba(255, 107, 53, 0.3),
+    0 0 90px rgba(116, 9, 183, 0.2),
+    inset 0 0 30px rgba(255, 255, 255, 0.2);
+  
+  /* 3D effect */
+  transform-style: preserve-3d;
+  transform: perspective(500px) rotateX(10deg) rotateY(-10deg);
+}
+
+.chrome-android-bust::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 30%;
+  height: 60%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+  filter: blur(10px);
+}
+
+.chrome-android-bust::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  border-radius: 15px;
+  animation: chromeReflection 3s ease-in-out infinite;
+}
+
+@keyframes chromeShift {
+  0%, 100% { 
+    background-position: 0% 50%;
+    transform: perspective(500px) rotateX(10deg) rotateY(-10deg);
+  }
+  50% { 
+    background-position: 100% 50%;
+    transform: perspective(500px) rotateX(-5deg) rotateY(15deg);
+  }
+}
+
+@keyframes chromeReflection {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Brand Text */
+.brand-text h2 {
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Main Headline - Exact Match */
+.main-headline {
+  font-size: 8rem;
+  font-weight: 900;
+  line-height: 0.9;
+  color: #ffffff;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.2),
+    0 0 60px rgba(255, 255, 255, 0.1);
+  letter-spacing: -0.02em;
+  animation: textGlow 4s ease-in-out infinite alternate;
+  will-change: text-shadow;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes textGlow {
+  0% { 
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(255, 255, 255, 0.2),
+      0 0 60px rgba(255, 255, 255, 0.1);
+  }
+  100% { 
+    text-shadow: 
+      0 0 30px rgba(255, 255, 255, 0.5),
+      0 0 60px rgba(255, 255, 255, 0.3),
+      0 0 90px rgba(0, 255, 255, 0.2);
+  }
+}
+
+/* Chrome Logo Effect */
+.chrome-logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #c0c0c0, #ffffff, #c0c0c0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  animation: chromePulse 2s ease-in-out infinite alternate;
+}
+
+.chrome-avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #c0c0c0, #ffffff, #c0c0c0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  animation: chromePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes chromePulse {
+  0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+  100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #00f5ff, #ff00ff, #ffff00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glass Button */
+.glass-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: white;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.glass-button:hover::before {
+  left: 100%;
+}
+
+.glass-button:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Floating Cards */
+.floating-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  will-change: transform, box-shadow;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.floating-card:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Service Cards */
+.service-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  will-change: transform, box-shadow;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.service-card:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+.service-icon {
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+/* Case Study Cards */
+.case-study-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.case-study-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff006e, #3a86ff, #06ffa5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.case-study-card:hover::before {
+  opacity: 1;
+}
+
+.case-study-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact Items */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.contact-item:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Futuristic Inputs */
+.futuristic-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.futuristic-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.futuristic-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Toast animations */
+@keyframes slide-in-from-top-2 {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.slide-in-from-top-2 {
+  animation-name: slide-in-from-top-2;
+}
+
+.duration-300 {
+  animation-duration: 300ms;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Mobile-specific hero layout */
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .hero-left {
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    z-index: 20;
+  }
+  
+  /* Mobile brand text - two lines */
+  .mobile-brand-text h2 {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    white-space: pre-line;
+  }
+  
+  /* Mobile book call button - smaller */
+  .mobile-book-button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.625rem;
+    border-radius: 25px;
+  }
+  
+  .mobile-book-button .lucide {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.125rem;
+  }
+  
+  .hero-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .hero-right {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-headline {
+    font-size: 5rem;
+    line-height: 0.85;
+  }
+
+  .chrome-android-bust {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-headline {
+    font-size: 3.5rem;
+    line-height: 0.8;
+    letter-spacing: -0.01em;
+  }
+
+  .chrome-android-bust {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .brand-text h2 {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .floating-card {
+    padding: 1.5rem;
+  }
+  
+  .service-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-headline {
+    font-size: 2.5rem;
+    line-height: 0.75;
+    letter-spacing: 0;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 90vw;
+    word-break: break-word;
+  }
+
+  .chrome-android-bust {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .brand-text h2 {
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Ready to transform mobile fix */
+  .transform-headline {
+    font-size: 2.8rem !important;
+    line-height: 0.9 !important;
+    text-align: center;
+    max-width: 95vw;
+    margin: 0 auto;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .main-headline {
+    font-size: 2.2rem;
+    line-height: 0.7;
+  }
+  
+  .transform-headline {
+    font-size: 2.4rem !important;
+    line-height: 0.85 !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .main-headline {
+    font-size: 2rem;
+    line-height: 0.65;
+  }
+  
+  .transform-headline {
+    font-size: 2.2rem !important;
+    line-height: 0.8 !important;
+  }
+}
